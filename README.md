@@ -1,17 +1,16 @@
 
-# Dealing with Null Values
+# Dealing with Missing Data - Lab
 
-### Introduction
+## Introduction
 
 In this lab, we'll work through strategies for data cleaning and dealing with null values (NaNs).
 
-### Objectives
-* Detect null values in our dataset
-* Deal with null values by dropping rows
-* Deal with null values by using mean/median values as a placeholder
-* Examine strategies for detecting null values encoded with a placeholder
+## Objectives
+* Detect missing data in Pandas using .describe(), .summary(), .isnull and .notnull
+* Replace/drop missing data in Pandas using .fillna and .dropna
 
-### Dataset
+
+## Dataset
 
 In this lab, we'll continue working with the _Titanic Survivors_ dataset, which can be found in `titanic.csv`.
 
@@ -33,7 +32,7 @@ Now, let's get started by reading in the data from the .csv file and storing it 
 df = None
 ```
 
-### Finding Null Values in a DataFrame
+## Finding Null Values in a DataFrame
 
 Before we can deal with null values, we first need to find them. There are several easy ways to detect them.  We will start by answering very general questions, such as "does this DataFrame contain any null values?", and then narrowing our focus each time the answer to a question is "yes".
 
@@ -144,7 +143,7 @@ In the cell below, resuse the code you wrote at the beginning of the notebook to
 
 Great! Those all seem in line with our expectations.  We can confidently say that this dataset contains no pesky null values that will mess up our analysis later on!
 
-## Conclusion
+## Summary
 
 In this lab, we learned:
 * How to detect null values in our dataset
