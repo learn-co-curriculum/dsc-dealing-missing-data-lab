@@ -17,7 +17,7 @@ In this lab, we'll continue working with the _Titanic Survivors_ dataset, which 
 Before we can get going, we'll need to import the usual libraries.  In the cell below, import:
 * `pandas` as `pd`
 * `numpy` as `np`
-* `matplotlib.pylot` as `plt`
+* `matplotlib.pyplot` as `plt`
 * set `%matplotlib inline`
 
 
