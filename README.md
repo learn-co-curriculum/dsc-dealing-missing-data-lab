@@ -6,7 +6,7 @@
 In this lab, we'll work through strategies for data cleaning and dealing with null values (NaNs).
 
 ## Objectives
-* Detect missing data in Pandas using .describe(), .summary(), .isnull and .notnull
+* Detect missing data in Pandas using .describe(), .info(), .isnull and .notnull
 * Replace/drop missing data in Pandas using .fillna and .dropna
 
 
