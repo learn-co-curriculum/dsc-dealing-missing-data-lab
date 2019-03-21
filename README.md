@@ -182,7 +182,7 @@ ________________________________________________________________________________
 
 Now, let's do a final check to ensure that there are no more null values remaining in this dataset.  
 
-In the cell below, resuse the code you wrote at the beginning of the notebook to check how many null values our dataset now contains.  
+In the cell below, reuse the code you wrote at the beginning of the notebook to check how many null values our dataset now contains.  
 
 
 ```python
