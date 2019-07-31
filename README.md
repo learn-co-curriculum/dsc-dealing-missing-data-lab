@@ -553,6 +553,17 @@ df.Pclass.value_counts(normalize=True)
 Write your answer below this line:
 ______________________________________________________________________________________________________
 
+
+```python
+# __SOLUTION__
+
+Sample response:
+
+By treating missing values as a seperate category, information is preserved. Perhaps there was a reason that this information is missing. By removing or replacing them, we can more easily conduct mathemtical analyses which require values for computation. I chose to randomly replace for now. I could have easily seen the argument for full removal. Concerns could include that I imputed the wrong value (indeed it was a random guess). Real reasons would depend on our desired application, but these its import to consider ramifications. For example, imputing the median to our age reduces variance and assumes that a new value would be close to the center of the distribution (albeit this assumption is statistically likely).
+
+
+```
+
 Now, let's do a final check to ensure that there are no more null values remaining in this dataset.  
 
 In the cell below, reuse the code you wrote at the beginning of the notebook to check how many null values our dataset now contains.  
