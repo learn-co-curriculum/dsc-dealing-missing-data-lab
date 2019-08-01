@@ -541,9 +541,9 @@ df.Pclass.value_counts(normalize=True)
 
 
 
-    3    0.554556
-    1    0.241845
-    2    0.203600
+    3    0.547807
+    1    0.242970
+    2    0.209224
     Name: Pclass, dtype: float64
 
 
