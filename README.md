@@ -480,13 +480,14 @@ ________________________________________________________________________________
 
 # Sample response:
 
-# By treating missing values as a seperate category, information is preserved. 
-# Perhaps there was a reason that this information is missing. 
-# By removing or replacing them, we can more easily conduct mathemtical analyses which require values for computation. 
-# I chose to randomly replace for now. I could have easily seen the argument for full removal. 
-# Concerns could include that I imputed the wrong value (indeed it was a random guess). 
-# Real reasons would depend on our desired application, but these its import to consider ramifications. 
-# For example, imputing the median to our age reduces variance 
+# By treating missing values as a separate category, information is preserved. 
+# Perhaps there is a reason that this information is missing. 
+# By removing or replacing missing information, we can more easily conduct mathematical analyses which require values for computation. 
+# I chose to randomly replace for now. I could have just as easily removed the data. 
+# Concerns include that I imputed the wrong value (indeed it was a random guess). 
+# The strategy for dealing with missing data will depend on our desired application, 
+# but regardless of the approach taken, the ramifications of how missing data are handled must be considered. 
+# For example, imputing the median of our age reduces variance 
 # and assumes that a new value would be close to the center of the distribution 
 # (albeit this assumption is statistically likely).
 
