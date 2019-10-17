@@ -3,16 +3,17 @@
 
 ## Introduction
 
-In this lab, we'll work through strategies for data cleaning and dealing with null values (NaNs).
+In this lab, we'll work through strategies for data cleaning and dealing with missing values (`NaN`s).
 
 ## Objectives
-* Detect missing data in Pandas using .describe(), .info(), .isnull and .notnull
-* Replace/drop missing data in Pandas using .fillna and .dropna
+In this lab you will:
 
+- Identify missing values in a dataframe using built-in methods 
+- Explain why missing values are a problem in data science 
 
 ## Dataset
 
-In this lab, we'll continue working with the _Titanic Survivors_ dataset, which can be found in `titanic.csv`.
+In this lab, we'll continue working with the _Titanic Survivors_ dataset, which can be found in `'titanic.csv'`.
 
 Before we can get going, we'll need to import the usual libraries.  In the cell below, import:
 * `pandas` as `pd`
@@ -29,11 +30,12 @@ import matplotlib.pyplot as plt
 %matplotlib inline
 ```
 
-Now, let's get started by reading in the data from the **titanic.csv** file and storing it in a DataFrame in the `df` variable below. Subsequently, be sure to preview the data.
+Now, let's get started by reading in the data from the `'titanic.csv'` file and storing it the DataFrame `df`. Subsequently, be sure to preview the data.
 
 
 ```python
-df = pd.read_csv('titanic.csv') #Use pandas to load the csv file
+# Use pandas to load the csv file
+df = pd.read_csv('titanic.csv') 
 df.head()
 ```
 
@@ -160,11 +162,11 @@ df.head()
 
 
 
-## Finding Null Values in a DataFrame
+## Find missing values in a DataFrame
 
-Before we can deal with null values, we first need to find them. There are several easy ways to detect them.  We will start by answering very general questions, such as "does this DataFrame contain any null values?", and then narrowing our focus each time the answer to a question is "yes".
+Before we can deal with missing values, we first need to find them. There are several easy ways to detect them.  We will start by answering very general questions, such as "does this DataFrame contain any null values?", and then narrowing our focus each time the answer to a question is "yes".
 
-We'll start by checking to see if the DataFrame contains **any** null values (NaNs) at all. 
+We'll start by checking to see if the DataFrame contains **any** missing values (NaNs) at all. 
 
 **_Hint_**: If you do this correctly, it will require method chaining, and will return a boolean value for each column.  
 
@@ -193,9 +195,9 @@ df.isna().any()
 
 
 
-Now we know which columns contain null values, but not how many. 
+Now we know which columns contain missing values, but not how many. 
 
-In the cell below, check chain a different method with `isna()` to check how many total null values are in each column.  
+In the cell below, chain a different method with `isna()` to check how many total missing values are in each column.  
 
 Expected Output:
 
@@ -212,7 +214,8 @@ Ticket           0
 Fare             0
 Cabin          687
 Embarked         2
-dtype: int64```
+dtype: int64
+```
 
 
 ```python
@@ -239,12 +242,12 @@ df.isna().sum()
 
 
 
-Now that we know how many null values exist in each column, we can make some decisions about how to deal with them.  
+Now that we know how many missing values exist in each column, we can make some decisions about how to deal with them.  
 
 We'll deal with each column individually, and employ a different strategy for each.  
 
 
-### Dropping the Column
+### Dropping the column
 
 The first column we'll deal with is the `Cabin` column.  We'll begin by examining this column more closely. 
 
@@ -267,8 +270,8 @@ With this many missing values, it's probably best for us to just drop this colum
 
 In the cell below:
 
-* drop the `Cabin` column in place from the `df` DataFrame
-* Then, check the remaining number of null values in the data set by using the code you wrote previously.  
+* Drop the `Cabin` column in place from the `df` DataFrame
+* Then, check the remaining number of null values in the dataset by using the code you wrote previously   
 
 
 ```python
@@ -295,19 +298,19 @@ df.isna().sum()
 
 
 
-### Computing Placeholder Values
+### Computing placeholder values
 
-Recall that another common strategy for dealing with null values is to replace them with the mean or median for that column.  We'll begin by investigating the current version of the `'Age'` column.  
+Recall that another common strategy for dealing with missing values is to replace them with the mean or median for that column. We'll begin by investigating the current version of the `'Age'` column.  
 
 In the cell below:
 
-* Plot a histogram of values in the `'Age'` column with 80 bins (1 for each year).   
-* Print out the mean and median for the column.  
+* Plot a histogram of values in the `'Age'` column with 80 bins (1 for each year)    
+* Print out the mean and median for the column   
 
 
 ```python
-age_mean = df.Age.mean()
-age_median = df.Age.median()
+age_mean = df['Age'].mean()
+age_median = df['Age'].median()
 df['Age'].plot(kind='hist', bins=80)
 
 print("Mean Value for Age column: {}".format(age_mean))
@@ -324,11 +327,11 @@ print("Median Value for Age column: {}".format(age_median))
 
 From the visualization above, we can see the data has a slightly positive skew. 
 
-In the cell below, replace all null values in the `'Age'` column with the median of the column.  **Do not hard code this value--use the methods from pandas or numpy to make this easier!**  Do this replacement in place on the DataFrame. 
+In the cell below, replace all missing values in the `'Age'` column with the median of the column.  **Do not hard code this value -- use the methods from pandas or numpy to make this easier!**  Do this replacement in place on the DataFrame. 
 
 
 ```python
-df.Age = df.Age.fillna(value=df.Age.median)
+df['Age'] = df['Age'].fillna(value=df['Age'].median)
 ```
 
 Now that we've replaced the values in the `'Age'` column, let's confirm that they've been replaced.  
@@ -359,13 +362,13 @@ df.isna().sum()
 
 
 
-Great! Now we need to deal with the two pesky null values in the `'Embarked'` column.  
+Great! Now we need to deal with the two pesky missing values in the `'Embarked'` column.  
 
-### Dropping Rows That Contain Null Values
+### Dropping rows that contain missing values
 
-Perhaps the most common solution to dealing with null values is to simply drop any rows that contain them.  Of course, this is only a good idea if the number dropped does not constitute a significant portion of our dataset.  Often, you'll need to make the overall determination to see if dropping the values is an acceptable loss, or if it is a better idea to just drop an offending column (e.g. the `'Cabin'` column) or to impute placeholder values instead.
+Perhaps the most common solution to dealing with missing values is to simply drop any rows that contain them.  Of course, this is only a good idea if the number dropped does not constitute a significant portion of our dataset.  Often, you'll need to make the overall determination to see if dropping the values is an acceptable loss, or if it is a better idea to just drop an offending column (e.g. the `'Cabin'` column) or to impute placeholder values instead.
 
-In the cell below, use the appropriate built-in DataFrame method to drop the rows containing null values. Do this in place on the DataFrame.  
+In the cell below, use the appropriate built-in DataFrame method to drop the rows containing missing values. Do this in place on the DataFrame.  
 
 
 ```python
@@ -392,9 +395,9 @@ df.isna().sum()
 
 
 
-Great! We've dealt with all the **_obvious_** null values, but we should also take some time to make sure that there aren't symbols or numbers included that are meant to denote a missing value. 
+Great! We've dealt with all the **_obvious_** missing values, but we should also take some time to make sure that there aren't symbols or numbers included that are meant to denote a missing value. 
 
-### Missing Values with Placeholders
+### Missing values with placeholders
 
 A common thing to see when working with datasets is missing values denoted with a preassigned code or symbol.  Let's check to ensure that each categorical column contains only what we expect.
 
@@ -424,9 +427,9 @@ for col in ['Embarked','Sex', 'Pclass','Survived']:
     
 
 
-It Looks like the `'Pclass'` column contains some missing values denoted by a placeholder! 
+It looks like the `'Pclass'` column contains some missing values denoted by a placeholder! 
 
-In the cell below, investigate how many placeholder values this column contains.  Then, deal with these null values using whichever strategy you believe is most appropriate in this case.  
+In the cell below, investigate how many placeholder values this column contains.  Then, deal with these missing values using whichever strategy you believe is most appropriate in this case.  
 
 
 ```python
@@ -446,8 +449,8 @@ df.Pclass.value_counts(normalize=True)
 
 
 ```python
-#Observation: account for 5% of the data
-#Method: randomly select a class acccording to current distribution
+# Observation: account for 5% of the data
+# Method: randomly select a class acccording to current distribution
 rel_prob = [.53, .22, .19]
 prob = [i/sum(rel_prob) for i in rel_prob]
 def impute_pclass(value):
@@ -494,7 +497,7 @@ ________________________________________________________________________________
 
 ```
 
-Now, let's do a final check to ensure that there are no more null values remaining in this dataset.  
+Now, let's do a final check to ensure that there are no more missing values remaining in this dataset.  
 
 In the cell below, reuse the code you wrote at the beginning of the notebook to check how many null values our dataset now contains.  
 
@@ -522,12 +525,12 @@ df.isna().sum()
 
 
 
-Great! Those all seem in line with our expectations.  We can confidently say that this dataset contains no pesky null values that will mess up our analysis later on!
+Great! Those all seem in line with our expectations.  We can confidently say that this dataset contains no pesky missing values that will mess up our analysis later on!
 
 ## Summary
 
 In this lab, we learned:
-* How to detect null values in our dataset
-* How to deal with null values by dropping rows
-* How to deal with null values by imputing mean/median values 
-* Strategies for detecting null values encoded with a placeholder
+* How to detect missing values in our dataset
+* How to deal with missing values by dropping rows
+* How to deal with missing values by imputing mean/median values 
+* Strategies for detecting missing values encoded with a placeholder
