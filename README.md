@@ -1,4 +1,3 @@
-
 # Dealing with Missing Data - Lab
 
 ## Introduction
@@ -128,7 +127,7 @@ In the cell below:
 
 From the visualization above, we can see the data has a slightly positive skew. 
 
-In the cell below, replace all missing values in the `'Age'` column with the median of the column.  **Do not hard code this value -- use the methods from pandas or numpy to make this easier!**  Do this replacement in place on the DataFrame. 
+In the cell below, replace all missing values in the `'Age'` column with the median of the column.  **Do not hard code this value -- use the methods from pandas or numpy to make this easier.**  Do this replacement in place on the DataFrame. 
 
 
 ```python
@@ -146,7 +145,7 @@ In the cell below, check how many null values remain in the dataset.
 
 ```
 
-Great! Now we need to deal with the two pesky missing values in the `'Embarked'` column.  
+Now we need to deal with the two pesky missing values in the `'Embarked'` column.  
 
 ### Dropping rows that contain missing values
 
@@ -160,7 +159,7 @@ In the cell below, use the appropriate built-in DataFrame method to drop the row
 
 ```
 
-Great! We've dealt with all the **_obvious_** missing values, but we should also take some time to make sure that there aren't symbols or numbers included that are meant to denote a missing value. 
+We've dealt with all the **_obvious_** missing values, but we should also take some time to make sure that there aren't symbols or numbers included that are meant to denote a missing value. 
 
 ### Missing values with placeholders
 
@@ -174,7 +173,7 @@ In the cell below, return the unique values in the `'Embarked'`, `'Sex'`, `'Pcla
 
 ```
 
-It looks like the `'Pclass'` column contains some missing values denoted by a placeholder! 
+It looks like the `'Pclass'` column contains some missing values denoted by a placeholder. 
 
 In the cell below, investigate how many placeholder values this column contains.  Then, deal with these missing values using whichever strategy you believe is most appropriate in this case.  
 
@@ -195,6 +194,24 @@ In the cell below, investigate how many placeholder values this column contains.
 Write your answer below this line:
 ______________________________________________________________________________________________________
 
+<details>
+    <summary style="cursor: pointer; display: inline">
+        <b><u>Solution (click to reveal)</u></b>
+    </summary>
+    <p>Sample response:
+
+By treating missing values as a separate category, information is preserved. 
+Perhaps there is a reason that this information is missing. 
+By removing or replacing missing information, we can more easily conduct mathematical analyses which require values for computation. 
+I chose to randomly replace for now. I could have just as easily removed the data. 
+Concerns include that I imputed the wrong value (indeed it was a random guess). 
+The strategy for dealing with missing data will depend on our desired application, 
+but regardless of the approach taken, the ramifications of how missing data are handled must be considered. 
+For example, imputing the median of our age reduces variance 
+and assumes that a new value would be close to the center of the distribution 
+(albeit this assumption is statistically likely).</p>
+</details>
+
 Now, let's do a final check to ensure that there are no more missing values remaining in this dataset.  
 
 In the cell below, reuse the code you wrote at the beginning of the notebook to check how many null values our dataset now contains.  
@@ -205,7 +222,7 @@ In the cell below, reuse the code you wrote at the beginning of the notebook to 
 
 ```
 
-Great! Those all seem in line with our expectations.  We can confidently say that this dataset contains no pesky missing values that will mess up our analysis later on!
+Those all seem in line with our expectations.  We can confidently say that this dataset contains no pesky missing values that will mess up our analysis if we continue with this dataset.
 
 ## Summary
 
