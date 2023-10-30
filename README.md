@@ -1,4 +1,3 @@
-
 # Dealing with Missing Data - Lab
 
 ## Introduction
@@ -313,8 +312,8 @@ age_mean = df['Age'].mean()
 age_median = df['Age'].median()
 df['Age'].plot(kind='hist', bins=80)
 
-print("Mean Value for Age column: {}".format(age_mean))
-print("Median Value for Age column: {}".format(age_median))
+print(f"Mean Value for Age column: {age_mean}")
+print(f"Median Value for Age column: {age_median}")
 ```
 
     Mean Value for Age column: 29.69911764705882
@@ -322,12 +321,14 @@ print("Median Value for Age column: {}".format(age_median))
 
 
 
+    
 ![png](index_files/index_13_1.png)
+    
 
 
 From the visualization above, we can see the data has a slightly positive skew. 
 
-In the cell below, replace all missing values in the `'Age'` column with the median of the column.  **Do not hard code this value -- use the methods from pandas or numpy to make this easier!**  Do this replacement in place on the DataFrame. 
+In the cell below, replace all missing values in the `'Age'` column with the median of the column.  **Do not hard code this value -- use the methods from pandas or numpy to make this easier.**  Do this replacement in place on the DataFrame. 
 
 
 ```python
@@ -362,7 +363,7 @@ df.isna().sum()
 
 
 
-Great! Now we need to deal with the two pesky missing values in the `'Embarked'` column.  
+Now we need to deal with the two pesky missing values in the `'Embarked'` column.  
 
 ### Dropping rows that contain missing values
 
@@ -395,7 +396,7 @@ df.isna().sum()
 
 
 
-Great! We've dealt with all the **_obvious_** missing values, but we should also take some time to make sure that there aren't symbols or numbers included that are meant to denote a missing value. 
+We've dealt with all the **_obvious_** missing values, but we should also take some time to make sure that there aren't symbols or numbers included that are meant to denote a missing value. 
 
 ### Missing values with placeholders
 
@@ -406,7 +407,7 @@ In the cell below, return the unique values in the `'Embarked'`, `'Sex'`, `'Pcla
 
 ```python
 for col in ['Embarked','Sex', 'Pclass','Survived']:
-    print('Values for {}:\n{}\n\n'.format(col, df[col].unique()))
+    print(f'Values for {col}:\n{df[col].unique()}\n\n')
 ```
 
     Values for Embarked:
@@ -427,7 +428,7 @@ for col in ['Embarked','Sex', 'Pclass','Survived']:
     
 
 
-It looks like the `'Pclass'` column contains some missing values denoted by a placeholder! 
+It looks like the `'Pclass'` column contains some missing values denoted by a placeholder. 
 
 In the cell below, investigate how many placeholder values this column contains.  Then, deal with these missing values using whichever strategy you believe is most appropriate in this case.  
 
@@ -465,9 +466,9 @@ df.Pclass.value_counts(normalize=True)
 
 
 
-    3    0.547807
-    1    0.242970
-    2    0.209224
+    3    0.559055
+    1    0.237345
+    2    0.203600
     Name: Pclass, dtype: float64
 
 
@@ -477,25 +478,23 @@ df.Pclass.value_counts(normalize=True)
 Write your answer below this line:
 ______________________________________________________________________________________________________
 
+<details>
+    <summary style="cursor: pointer; display: inline">
+        <b><u>Solution (click to reveal)</u></b>
+    </summary>
+    <p>Sample response:
 
-```python
-
-
-# Sample response:
-
-# By treating missing values as a separate category, information is preserved. 
-# Perhaps there is a reason that this information is missing. 
-# By removing or replacing missing information, we can more easily conduct mathematical analyses which require values for computation. 
-# I chose to randomly replace for now. I could have just as easily removed the data. 
-# Concerns include that I imputed the wrong value (indeed it was a random guess). 
-# The strategy for dealing with missing data will depend on our desired application, 
-# but regardless of the approach taken, the ramifications of how missing data are handled must be considered. 
-# For example, imputing the median of our age reduces variance 
-# and assumes that a new value would be close to the center of the distribution 
-# (albeit this assumption is statistically likely).
-
-
-```
+By treating missing values as a separate category, information is preserved. 
+Perhaps there is a reason that this information is missing. 
+By removing or replacing missing information, we can more easily conduct mathematical analyses which require values for computation. 
+I chose to randomly replace for now. I could have just as easily removed the data. 
+Concerns include that I imputed the wrong value (indeed it was a random guess). 
+The strategy for dealing with missing data will depend on our desired application, 
+but regardless of the approach taken, the ramifications of how missing data are handled must be considered. 
+For example, imputing the median of our age reduces variance 
+and assumes that a new value would be close to the center of the distribution 
+(albeit this assumption is statistically likely).</p>
+</details>
 
 Now, let's do a final check to ensure that there are no more missing values remaining in this dataset.  
 
@@ -525,7 +524,7 @@ df.isna().sum()
 
 
 
-Great! Those all seem in line with our expectations.  We can confidently say that this dataset contains no pesky missing values that will mess up our analysis later on!
+Those all seem in line with our expectations.  We can confidently say that this dataset contains no pesky missing values that will mess up our analysis if we continue with this dataset.
 
 ## Summary
 
